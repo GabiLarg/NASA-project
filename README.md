@@ -10,7 +10,7 @@ step1: 2 inteiros e 1 char, separados por um espaço (se repete até encontrar e
 
 X Y D => posição da sonda (eixo x e Y respectivamente) e direção (N, E, S, W) Ex. 3 2 W
 
-step2 : array de char sem separação (vai para o step 1 em seguida)
+step2 : array de char sem separação entre {L, R, M} (vai para o step 1 em seguida)
 
 Ex. LMMLMR 
 
