@@ -70,13 +70,18 @@ namespace NASA_project
         static bool validadeMeshEntry(string[]positions, Mesh mesh)
         {
             if (positions.Length < 2) {
-                Console.WriteLine("Entrada inválida, tente novamente.");
+                Console.WriteLine("Entrada inválida. Tente novamente.");
                 return false;
             }
             int Xvalid;
             int Yvalid;
             if (Int32.TryParse(positions[0], out Xvalid) && Int32.TryParse(positions[1], out Yvalid))
             {
+                if (Xvalid < 0 || Yvalid < 0)
+                {
+                    Console.WriteLine("Posição superior direita não pode ser negativa. Tente novamente.");
+                    return false;
+                }
                 //set highest postion in the mesh
                 mesh.endMesh.X = Xvalid;
                 mesh.endMesh.Y = Yvalid;
@@ -84,7 +89,7 @@ namespace NASA_project
             }
             else
             {
-                Console.WriteLine("Entrada inválida, tente novamente.");
+                Console.WriteLine("Entrada inválida. Tente novamente.");
                 return false;
             }
         }
@@ -95,7 +100,7 @@ namespace NASA_project
             probe.position = new Position();
             if (parameters.Length < 3)
             {
-                Console.WriteLine("Entrada de parâmetros inválida, entre com os parâmetros da sonda novamente.");
+                Console.WriteLine("Entrada de parâmetros inválida. Entre com os parâmetros da sonda novamente.");
                 return null;
             }
             int Xvalid;
@@ -105,7 +110,7 @@ namespace NASA_project
                 //verify if out of range
                 if (Xvalid > mesh.endMesh.X || Xvalid < mesh.startMesh.X || Yvalid > mesh.endMesh.Y || Yvalid < mesh.startMesh.Y)
                 {
-                    Console.WriteLine("A sonda está fora da malha, entre com os parâmetros da sonda novamente.");
+                    Console.WriteLine("A sonda está fora da malha. Entre com os parâmetros da sonda novamente.");
                     return null;
                 }
                 //set entry position
@@ -116,7 +121,7 @@ namespace NASA_project
             else
             {
             
-                Console.WriteLine("Entrada de parâmetros inválida, entre com os parâmetros da sonda novamente.");
+                Console.WriteLine("Entrada de parâmetros inválida. Entre com os parâmetros da sonda novamente.");
                 return null;
             }
             return probe;
@@ -142,13 +147,13 @@ namespace NASA_project
                             move(probe, mesh);
                             break;
                         default:
-                            Console.WriteLine("Entrada de parâmetros inválida, entre com os parâmetros da sonda novamente.");
+                            Console.WriteLine("Entrada de parâmetros inválida. Entre com os parâmetros da sonda novamente.");
                             return;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Entrada de parâmetros inválida, entre com os parâmetros da sonda novamente.");
+                    Console.WriteLine("Entrada de parâmetros inválida. Entre com os parâmetros da sonda novamente.");
                     return;
                 }
             }
@@ -197,7 +202,7 @@ namespace NASA_project
                     else probe.position.X = mesh.startMesh.X;
                     break;
                 default:
-                    Console.WriteLine("Entrada de parâmetros inválida, entre com os parâmetros da sonda novamente.");
+                    Console.WriteLine("Entrada de parâmetros inválida. Entre com os parâmetros da sonda novamente.");
                     return;
             }
 
