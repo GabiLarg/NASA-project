@@ -1,0 +1,5 @@
+c:\users\gabriela\documents\visual studio 2013\Projects\NASA project\NASA project\bin\Debug\NASA project.exe.config
+c:\users\gabriela\documents\visual studio 2013\Projects\NASA project\NASA project\bin\Debug\NASA project.exe
+c:\users\gabriela\documents\visual studio 2013\Projects\NASA project\NASA project\bin\Debug\NASA project.pdb
+c:\users\gabriela\documents\visual studio 2013\Projects\NASA project\NASA project\obj\Debug\NASA project.exe
+c:\users\gabriela\documents\visual studio 2013\Projects\NASA project\NASA project\obj\Debug\NASA project.pdb
