@@ -8,7 +8,7 @@ namespace NASA_project
 {
     class Program
     {
-        public static string[] direction = {"N", "E", "S", "W" };
+        public static string[] referenceCompassRose = {"N", "E", "S", "W" };
         public static string[] movements = { "L", "R", "M" };
   
 
@@ -19,12 +19,12 @@ namespace NASA_project
             Probe probe = new Probe();
            
             //set start position for the mesh
-            mesh.startMesh = new Position();
-            mesh.startMesh.X = 0;
-            mesh.startMesh.Y = 0;
+            mesh.startPoint = new Position();
+            mesh.startPoint.X = 0;
+            mesh.startPoint.Y = 0;
 
-            string[] finalposition;
-            string[] parameters;
+            string[] entryMeshEndPoint;
+            string[] entryProbePointDirection;
             string line = null;
             int step = 0;
 
@@ -44,16 +44,16 @@ namespace NASA_project
                 if (line == "0") continue;
                 if (step == 0)
                 {
-                    finalposition = line.Split();
-                    mesh.endMesh = new Position();
-                    if ( validadeMeshEntry(finalposition, mesh)) { step = 1; }
+                    entryMeshEndPoint = line.Split();
+                    mesh.endPoint = new Position();
+                    if ( validadeMeshEntry(entryMeshEndPoint, mesh)) { step = 1; }
                     continue;
                 }
                 else if (step == 1)
                 {
                  
-                    parameters = line.Split();
-                    probe = validateProbeEntry(parameters, mesh);
+                    entryProbePointDirection = line.Split();
+                    probe = validateProbeEntry(entryProbePointDirection, mesh);
                     if (probe != null) step = 2;
                     continue;
                 }
@@ -83,8 +83,8 @@ namespace NASA_project
                     return false;
                 }
                 //set highest postion in the mesh
-                mesh.endMesh.X = Xvalid;
-                mesh.endMesh.Y = Yvalid;
+                mesh.endPoint.X = Xvalid;
+                mesh.endPoint.Y = Yvalid;
                 return true;
             }
             else
@@ -105,10 +105,10 @@ namespace NASA_project
             }
             int Xvalid;
             int Yvalid;
-            if (Int32.TryParse(parameters[0], out Xvalid) && Int32.TryParse(parameters[1], out Yvalid) && direction.Contains(parameters[2]))
+            if (Int32.TryParse(parameters[0], out Xvalid) && Int32.TryParse(parameters[1], out Yvalid) && referenceCompassRose.Contains(parameters[2]))
             {
                 //verify if out of range
-                if (Xvalid > mesh.endMesh.X || Xvalid < mesh.startMesh.X || Yvalid > mesh.endMesh.Y || Yvalid < mesh.startMesh.Y)
+                if (Xvalid > mesh.endPoint.X || Xvalid < mesh.startPoint.X || Yvalid > mesh.endPoint.Y || Yvalid < mesh.startPoint.Y)
                 {
                     Console.WriteLine("A sonda está fora da malha. Entre com os parâmetros da sonda novamente.");
                     return null;
@@ -136,11 +136,11 @@ namespace NASA_project
                     switch (m.ToString())
                     {
                         case "L":
-                            index = Array.IndexOf(direction, probe.direction);
+                            index = Array.IndexOf(referenceCompassRose, probe.direction);
                             turnLeft(probe, index);
                             break;
                         case "R":
-                            index = Array.IndexOf(direction, probe.direction);
+                            index = Array.IndexOf(referenceCompassRose, probe.direction);
                             turnRight(probe, index);
                             break;
                         case "M":
@@ -160,18 +160,18 @@ namespace NASA_project
         }
 
         static void turnLeft(Probe probe, int index) {
-            if (index == 0) probe.direction = direction[direction.Length - 1];
+            if (index == 0) probe.direction = referenceCompassRose[referenceCompassRose.Length - 1];
             else
             {
-                probe.direction = direction[index - 1];
+                probe.direction = referenceCompassRose[index - 1];
             }
         }
 
         static void turnRight(Probe probe, int index) {
-            if (index == (direction.Length - 1)) probe.direction = direction[0];
+            if (index == (referenceCompassRose.Length - 1)) probe.direction = referenceCompassRose[0];
             else
             {
-                probe.direction = direction[index + 1];
+                probe.direction = referenceCompassRose[index + 1];
             }           
            
         }
@@ -183,23 +183,23 @@ namespace NASA_project
             {
                 case "N":
                     newY = probe.position.Y + 1;
-                    if (newY <= mesh.endMesh.Y) probe.position.Y = newY;
-                    else probe.position.Y = mesh.endMesh.Y;
+                    if (newY <= mesh.endPoint.Y) probe.position.Y = newY;
+                    else probe.position.Y = mesh.endPoint.Y;
                     break;
                 case "E":
                     newX= probe.position.X + 1;
-                    if (newX <= mesh.endMesh.X) probe.position.X = newX;
-                    else probe.position.X = mesh.endMesh.X;
+                    if (newX <= mesh.endPoint.X) probe.position.X = newX;
+                    else probe.position.X = mesh.endPoint.X;
                     break;
                 case "S":
                     newY = probe.position.Y - 1;
-                    if (newY >= mesh.startMesh.Y) probe.position.Y = newY;
-                    else probe.position.Y = mesh.startMesh.Y;
+                    if (newY >= mesh.startPoint.Y) probe.position.Y = newY;
+                    else probe.position.Y = mesh.startPoint.Y;
                     break;
                 case "W":
                     newX= probe.position.X - 1;
-                    if (newX >= mesh.startMesh.X) probe.position.X = newX;
-                    else probe.position.X = mesh.startMesh.X;
+                    if (newX >= mesh.startPoint.X) probe.position.X = newX;
+                    else probe.position.X = mesh.startPoint.X;
                     break;
                 default:
                     Console.WriteLine("Entrada de parâmetros inválida. Entre com os parâmetros da sonda novamente.");
@@ -221,8 +221,8 @@ namespace NASA_project
 
         class Mesh
         {
-            public Position startMesh { get; set; }
-            public Position endMesh { get; set; }
+            public Position startPoint { get; set; }
+            public Position endPoint { get; set; }
         }
     }
 }
