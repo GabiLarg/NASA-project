@@ -1,0 +1,3 @@
+C:\Users\Gabriela\Documents\Visual Studio 2013\Projects\NASA project\NASA project\obj\Debug\Project_Mars.csprojResolveAssemblyReference.cache
+C:\Users\Gabriela\Documents\Visual Studio 2013\Projects\NASA project\NASA project\obj\Debug\NASA project.exe
+C:\Users\Gabriela\Documents\Visual Studio 2013\Projects\NASA project\NASA project\obj\Debug\NASA project.pdb

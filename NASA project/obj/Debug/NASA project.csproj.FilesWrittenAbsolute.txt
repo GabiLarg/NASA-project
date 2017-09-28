@@ -1,0 +1,6 @@
+/media/gabriela/OS/Users/Gabriela/Documents/Visual Studio 2013/Projects/NASA project/NASA project/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/media/gabriela/OS/Users/Gabriela/Documents/Visual Studio 2013/Projects/NASA project/NASA project/bin/Debug/NASA project.exe.config
+/media/gabriela/OS/Users/Gabriela/Documents/Visual Studio 2013/Projects/NASA project/NASA project/bin/Debug/NASA project.pdb
+/media/gabriela/OS/Users/Gabriela/Documents/Visual Studio 2013/Projects/NASA project/NASA project/bin/Debug/NASA project.exe
+/media/gabriela/OS/Users/Gabriela/Documents/Visual Studio 2013/Projects/NASA project/NASA project/obj/Debug/NASA project.exe
+/media/gabriela/OS/Users/Gabriela/Documents/Visual Studio 2013/Projects/NASA project/NASA project/obj/Debug/NASA project.pdb

@@ -7,7 +7,7 @@
     <ProjectGuid>{971065F1-6997-404A-B385-E89C50D60A21}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NASA_project</RootNamespace>
+    <RootNamespace>Project_Mars</RootNamespace>
     <AssemblyName>NASA project</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Movements.cs" />
+    <Compile Include="North.cs" />
+    <Compile Include="Point.cs" />
+    <Compile Include="Mesh.cs" />
+    <Compile Include="Probe.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

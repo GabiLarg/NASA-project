@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NASA_project
+namespace Project_Mars
 {
     class Program
     {
-        public static string[] referenceCompassRose = {"N", "E", "S", "W" };
         public static string[] movements = { "L", "R", "M" };
   
 
@@ -19,7 +18,7 @@ namespace NASA_project
             Probe probe = new Probe();
            
             //set start position for the mesh
-            mesh.startPoint = new Position();
+            mesh.startPoint = new Point();
             mesh.startPoint.X = 0;
             mesh.startPoint.Y = 0;
 
@@ -45,7 +44,7 @@ namespace NASA_project
                 if (step == 0)
                 {
                     entryMeshEndPoint = line.Split();
-                    mesh.endPoint = new Position();
+                    mesh.endPoint = new Point();
                     if ( validadeMeshEntry(entryMeshEndPoint, mesh)) { step = 1; }
                     continue;
                 }
@@ -97,7 +96,7 @@ namespace NASA_project
         static Probe validateProbeEntry(string[] parameters, Mesh mesh)
         {
             Probe probe = new Probe();
-            probe.position = new Position();
+            probe.position = new Point();
             if (parameters.Length < 3)
             {
                 Console.WriteLine("Entrada de parâmetros inválida. Entre com os parâmetros da sonda novamente.");
@@ -128,101 +127,8 @@ namespace NASA_project
         }
         static void validateMovesEntry(string moves, Probe probe, Mesh mesh)
         {
-            foreach (var m in moves)
-            {
-                int index = 0;
-                if (movements.Contains(m.ToString()))
-                {
-                    switch (m.ToString())
-                    {
-                        case "L":
-                            index = Array.IndexOf(referenceCompassRose, probe.direction);
-                            turnLeft(probe, index);
-                            break;
-                        case "R":
-                            index = Array.IndexOf(referenceCompassRose, probe.direction);
-                            turnRight(probe, index);
-                            break;
-                        case "M":
-                            move(probe, mesh);
-                            break;
-                        default:
-                            Console.WriteLine("Entrada de parâmetros inválida. Entre com os parâmetros da sonda novamente.");
-                            return;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Entrada de parâmetros inválida. Entre com os parâmetros da sonda novamente.");
-                    return;
-                }
-            }
+            
         }
 
-        static void turnLeft(Probe probe, int index) {
-            if (index == 0) probe.direction = referenceCompassRose[referenceCompassRose.Length - 1];
-            else
-            {
-                probe.direction = referenceCompassRose[index - 1];
-            }
-        }
-
-        static void turnRight(Probe probe, int index) {
-            if (index == (referenceCompassRose.Length - 1)) probe.direction = referenceCompassRose[0];
-            else
-            {
-                probe.direction = referenceCompassRose[index + 1];
-            }           
-           
-        }
-
-        static void move(Probe probe, Mesh mesh) {
-            int newY = 0;
-            int newX = 0;
-            switch (probe.direction)
-            {
-                case "N":
-                    newY = probe.position.Y + 1;
-                    if (newY <= mesh.endPoint.Y) probe.position.Y = newY;
-                    else probe.position.Y = mesh.endPoint.Y;
-                    break;
-                case "E":
-                    newX= probe.position.X + 1;
-                    if (newX <= mesh.endPoint.X) probe.position.X = newX;
-                    else probe.position.X = mesh.endPoint.X;
-                    break;
-                case "S":
-                    newY = probe.position.Y - 1;
-                    if (newY >= mesh.startPoint.Y) probe.position.Y = newY;
-                    else probe.position.Y = mesh.startPoint.Y;
-                    break;
-                case "W":
-                    newX= probe.position.X - 1;
-                    if (newX >= mesh.startPoint.X) probe.position.X = newX;
-                    else probe.position.X = mesh.startPoint.X;
-                    break;
-                default:
-                    Console.WriteLine("Entrada de parâmetros inválida. Entre com os parâmetros da sonda novamente.");
-                    return;
-            }
-
-       }
-        class Position
-        {
-            public int X { get; set; }
-            public int Y { get; set; }
-        }
-        class Probe
-        {
-
-            public Position position { get; set; }
-            public string direction { get; set; }
-        }
-
-        class Mesh
-        {
-            public Position startPoint { get; set; }
-            public Position endPoint { get; set; }
-        }
     }
 }
